@@ -44,6 +44,6 @@ steps:
     sandboxName: 'devslop'
     createSandBox: true
     createProfile: false
-    scanStatusCheckInterval: '15'
+    scanStatusCheckInterval: '30'
     importResults: true
     failBuildOnPolicyFail: true
