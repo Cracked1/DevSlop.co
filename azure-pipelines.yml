@@ -12,7 +12,7 @@ pool:
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  buildConfiguration: 'Debug'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -32,3 +32,18 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: Veracode@2
+  inputs:
+    ConnectionDetailsSelection: 'Credentials'
+    username: 'saifullah.sk@moneymart.com'
+    password: 'Mymoney@0021'
+    veracodeAppProfile: 'InstaCheques'
+    version: '$(build.buildNumber)'
+    filepath: '$(build.artifactstagingdirectory)'
+    sandboxName: 'devslop'
+    createSandBox: true
+    createProfile: false
+    scanStatusCheckInterval: '30'
+    importResults: true
+    failBuildOnPolicyFail: true
